@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_three/presentation/widget/toolbar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -21,20 +22,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
+      appBar: NewsThreeToolbar(Size(double.infinity, 100)),
+      body: Container(
+        padding: EdgeInsets.fromLTRB(24, 4, 24, 16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            SizedBox(height: 8,),
+            Text("Selamat Malam")
           ],
         ),
       ),

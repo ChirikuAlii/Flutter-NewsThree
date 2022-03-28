@@ -119,7 +119,7 @@ class SliderWidget extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.headlineSmall
           ),
           SizedBox(
             height: 16,
