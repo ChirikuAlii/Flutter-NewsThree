@@ -7,4 +7,6 @@ class AppColors {
 
   static const blueLinkWater = Color(0xFFacb2bc);
   static const blueTangaroa = Color(0xFF111827);
+
+  static const blackTangaroa = Color(0xFF111828);
 }
