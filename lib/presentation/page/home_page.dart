@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:news_three/presentation/widget/toolbar.dart';
+import 'package:news_three/res/app_theme.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -21,21 +23,29 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: NewsThreeToolbar(Size(double.infinity, 100)),
-      body: Container(
-        padding: EdgeInsets.fromLTRB(24, 4, 24, 16),
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 8,),
-            Text("Selamat Malam")
-          ],
-        ),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        statusBarColor: Theme.of(context).scaffoldBackgroundColor,
+        statusBarIconBrightness: context.isDarkMode() ? Brightness.light : Brightness.dark
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      child: Scaffold(
+        appBar: NewsThreeToolbar(Size(double.infinity, 100)),
+        body: Container(
+          padding: EdgeInsets.fromLTRB(24, 4, 24, 16),
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 8,
+              ),
+              Text("Selamat Malam")
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _incrementCounter,
+          tooltip: 'Increment',
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

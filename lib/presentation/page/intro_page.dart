@@ -27,17 +27,18 @@ class _IntroPageState extends State<IntroPage> {
       isShowButton: false,
     ),
     SliderWidget(
-        title: "Explore and follow topics relevant to you",
-        desc:
-            "Create with curated content on thousands of topics from world-renowned publishers, local outlets, and the community.",
-            isShowButton: true,
-            ),
+      title: "Explore and follow topics relevant to you",
+      desc:
+          "Create with curated content on thousands of topics from world-renowned publishers, local outlets, and the community.",
+      isShowButton: true,
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(statusBarColor: Theme.of(context).primaryColor),
+      value:
+          SystemUiOverlayStyle(statusBarColor: Theme.of(context).primaryColor),
       child: Scaffold(
         body: Column(
           children: [
@@ -53,7 +54,6 @@ class _IntroPageState extends State<IntroPage> {
             ),
             Expanded(
               child: Container(
-                
                 child: Stack(
                   children: [
                     Container(
@@ -108,7 +108,10 @@ class SliderWidget extends StatelessWidget {
   final String desc;
   final bool isShowButton;
   const SliderWidget(
-      {Key? key, required String this.title, required String this.desc, required this.isShowButton})
+      {Key? key,
+      required String this.title,
+      required String this.desc,
+      required this.isShowButton})
       : super(key: key);
 
   @override
@@ -117,10 +120,7 @@ class SliderWidget extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
       child: Column(
         children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.headlineSmall
-          ),
+          Text(title, style: Theme.of(context).textTheme.headlineSmall),
           SizedBox(
             height: 16,
           ),
@@ -130,23 +130,21 @@ class SliderWidget extends StatelessWidget {
           ),
           Expanded(child: Container()),
           Visibility(
-              maintainSize: !isShowButton,
-              maintainAnimation: !isShowButton,
-              maintainState: !isShowButton,
-              visible: isShowButton,
+            maintainSize: !isShowButton,
+            maintainAnimation: !isShowButton,
+            maintainState: !isShowButton,
+            visible: isShowButton,
             child: TextButton(
               style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Theme.of(context).iconTheme.color!),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Theme.of(context).iconTheme.color!),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40)))),
               onPressed: () {
-                
-                AutoRouter.of(context).push(MyHomePageRoute(title: "News Three"));
+                AutoRouter.of(context)
+                    .push(MyHomePageRoute(title: "News Three"));
                 AutoRouter.of(context).removeLast();
-                
-                
               },
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 32),

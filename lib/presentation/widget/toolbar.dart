@@ -14,14 +14,14 @@ class NewsThreeToolbar extends StatelessWidget with PreferredSizeWidget {
           children: [
             Expanded(
               child: Container(
-                margin: EdgeInsets.fromLTRB(24, MediaQuery.of(context).viewPadding.top+16, 0, 0),
+                padding: EdgeInsets.fromLTRB(24, MediaQuery.of(context).viewPadding.top + 16, 0, 0),
                 child: Text(
                   "News 3",
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                    fontSize: 24,
-                    color: Theme.of(context).primaryColor, 
-                    fontWeight: FontWeight.bold ),
+                      fontSize: 24,
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
