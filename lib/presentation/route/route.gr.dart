@@ -13,7 +13,7 @@
 import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:flutter/material.dart' as _i4;
 
-import '../page/home_page.dart' as _i2;
+import '../page/home/home_page.dart' as _i2;
 import '../page/intro_page.dart' as _i1;
 
 class AppRouter extends _i3.RootStackRouter {

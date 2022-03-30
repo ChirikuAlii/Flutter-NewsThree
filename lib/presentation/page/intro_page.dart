@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:news_three/presentation/page/home_page.dart';
+import 'package:news_three/presentation/page/home/home_page.dart';
 import 'package:news_three/presentation/route/route.gr.dart';
 import 'package:news_three/res/app_color.dart';
 import 'package:news_three/res/app_theme.dart';
