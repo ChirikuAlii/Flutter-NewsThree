@@ -7,13 +7,15 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
-
+  
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final searchEditController = TextEditingController();
+
 
   void _incrementCounter() {
     setState(() {
@@ -33,11 +35,55 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Container(
           padding: EdgeInsets.fromLTRB(24, 4, 24, 16),
           child: Column(
+            
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
                 height: 8,
               ),
-              Text("Selamat Malam")
+              Text("Selamat Malam",textAlign: TextAlign.start,),
+
+              SizedBox(height :24),
+
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 4,horizontal: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: Theme.of(context).backgroundColor
+                ),
+                child: Row(
+
+                  children: [
+                    Icon(
+                      Icons.search,
+                      size: 24,
+                      ),
+                    SizedBox(width: 8,),
+                    Expanded(
+                      child: TextField(
+                    
+                        controller: searchEditController ,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Search Article"
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Text("data"),
+              TabBar(tabs: [
+                Tab(
+                  text: "hei",
+                ),
+                   Tab(
+                  text: "hei",
+                ),   Tab(
+                  text: "hei",
+                )
+              ])
+              
             ],
           ),
         ),

@@ -2,36 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:news_three/res/app_color.dart';
 
 class MyThemes {
-
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.blackTangaroa,
     primaryColor: AppColors.colorPrimary,
-    
+          backgroundColor: AppColors.greyMidnightExpress,
     textTheme: TextTheme(
       headlineSmall: TextStyle(color: Colors.white),
       bodySmall: TextStyle(color: AppColors.greyFont),
       bodyMedium: TextStyle(color: AppColors.greyFont),
     ),
-    colorScheme: ColorScheme.dark() ,
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.colorPrimary,
+      selectionColor: AppColors.colorPrimary,
+      selectionHandleColor: AppColors.colorPrimary
+    ),
+    colorScheme: ColorScheme.dark(),
     iconTheme: IconThemeData(color: AppColors.colorPrimary),
-    
-    
   );
 
   static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    primaryColor: AppColors.colorPrimary,
-    textTheme: TextTheme(
-      headlineSmall: TextStyle(color: Colors.black),
-      bodySmall: TextStyle(color: AppColors.greyFontLight),
-      bodyMedium: TextStyle(color: AppColors.greyFontLight),
-    ),
+      scaffoldBackgroundColor: Colors.white,
+      primaryColor: AppColors.colorPrimary,
+      backgroundColor: AppColors.greySolitude,
+      textTheme: TextTheme(
+        headlineSmall: TextStyle(color: Colors.black),
+        bodySmall: TextStyle(color: AppColors.greyFontLight),
+        bodyMedium: TextStyle(color: AppColors.greyFontLight),
+      ),
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: AppColors.colorPrimary,
+        selectionColor: AppColors.colorPrimary,
+        selectionHandleColor: AppColors.colorPrimary
+      ),
+      colorScheme: ColorScheme.light(),
+      iconTheme: IconThemeData(color: AppColors.colorPrimary));
 
-  
-    colorScheme: ColorScheme.light() ,
-    iconTheme: IconThemeData(color: AppColors.colorPrimary)
-  );
-  
 }
 
 extension DarkMode on BuildContext {
