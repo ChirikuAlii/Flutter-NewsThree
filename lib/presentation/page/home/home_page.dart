@@ -120,22 +120,47 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       ),
                   ),
-                  SizedBox(width:24,)
+                  SizedBox(width:16,)
                 ],
 
               ),
               SizedBox(
-                height: 100,
+                height: 300,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 5,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
-                      margin: EdgeInsets.all(8),
-                      width: 100,
+                      margin: EdgeInsets.fromLTRB(0, 16, 16, 0),
+                      width: MediaQuery.of(context).size.width * 0.75,
                       decoration: BoxDecoration(
                         color: Colors.blue,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                      ),
+                      child: Container(
+                        margin: EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.75,
+                              height: 150,
+                              decoration: BoxDecoration(
+                                color: Colors.pink,
+                                borderRadius: BorderRadius.circular(16)
+                              ),
+                            ),
+                            SizedBox(height: 8,),
+                            Text(
+                              
+                              "Ukraine conflict: Kyiv braces for a Russian assaultUkraine conflict: Kyiv braces for a Russian assaultUkraine conflict: Kyiv braces for a Russian assaultUkraine conflict: Kyiv braces for a Russian assault",
+                              style: Theme.of(context).textTheme.titleMedium,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              
+                            )
+                          ],
+                        ),
                       ),
                       );
                     },

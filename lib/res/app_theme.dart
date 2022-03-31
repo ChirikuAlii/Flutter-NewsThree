@@ -6,36 +6,44 @@ class MyThemes {
     scaffoldBackgroundColor: AppColors.blackTangaroa,
     primaryColor: AppColors.colorPrimary,
           backgroundColor: AppColors.greyMidnightExpress,
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       headlineSmall: TextStyle(color: Colors.white),
       bodySmall: TextStyle(color: AppColors.greyFont),
       bodyMedium: TextStyle(color: AppColors.greyFont),
+      titleMedium: TextStyle(
+        height: 1.3,
+        wordSpacing: 1.5
+      )
     ),
-    textSelectionTheme: TextSelectionThemeData(
+    textSelectionTheme: const TextSelectionThemeData(
       cursorColor: AppColors.colorPrimary,
       selectionColor: AppColors.colorPrimary,
       selectionHandleColor: AppColors.colorPrimary
     ),
-    colorScheme: ColorScheme.dark(),
-    iconTheme: IconThemeData(color: AppColors.colorPrimary),
+    colorScheme: const ColorScheme.dark(),
+    iconTheme: const IconThemeData(color: AppColors.colorPrimary),
   );
 
   static final lightTheme = ThemeData(
       scaffoldBackgroundColor: Colors.white,
       primaryColor: AppColors.colorPrimary,
       backgroundColor: AppColors.greySolitude,
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         headlineSmall: TextStyle(color: Colors.black),
         bodySmall: TextStyle(color: AppColors.greyFontLight),
         bodyMedium: TextStyle(color: AppColors.greyFontLight),
+        titleMedium: TextStyle(
+          height: 1.3,
+          wordSpacing: 1.5
+        )
       ),
-      textSelectionTheme: TextSelectionThemeData(
+      textSelectionTheme: const TextSelectionThemeData(
         cursorColor: AppColors.colorPrimary,
         selectionColor: AppColors.colorPrimary,
         selectionHandleColor: AppColors.colorPrimary
       ),
-      colorScheme: ColorScheme.light(),
-      iconTheme: IconThemeData(color: AppColors.colorPrimary));
+      colorScheme: const ColorScheme.light(),
+      iconTheme: const IconThemeData(color: AppColors.colorPrimary));
 
 }
 
