@@ -47,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         appBar: NewsThreeToolbar(Size(MediaQuery.of(context).size.width, 100)),
         body: Container(
+          color: Theme.of(context).scaffoldBackgroundColor,
           padding: EdgeInsets.fromLTRB(0, 4, 0, 16),
           child: CustomScrollView(
             slivers: [
@@ -122,9 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                   const TrendingListWidget(),
-                  const SizedBox(
-                    height: 24,
-                  ),
+                
                   Row(
                     children: [
                       const SizedBox(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_three/res/app_color.dart';
 
 class TrendingListWidget extends StatefulWidget {
   const TrendingListWidget({Key? key}) : super(key: key);
@@ -11,19 +12,24 @@ class _TrendingListWidgetState extends State<TrendingListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
-      margin: const EdgeInsets.only(left: 24),
+      height: 324,
       child: ListView.builder(
+        padding: EdgeInsets.only(right: 16),
         scrollDirection: Axis.horizontal,
         itemCount: 5,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            margin: EdgeInsets.fromLTRB(0, 16, 16, 0),
+            margin: EdgeInsets.fromLTRB(24, 16, 0, 24),
             width: 308,
             decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-            ),
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+                boxShadow: [
+                  BoxShadow(
+                      color: AppColors.greyZircon,
+                      blurRadius: 10,
+                      offset: Offset(2, 5))
+                ]),
             child: Container(
               margin: EdgeInsets.all(16),
               child: Column(
@@ -44,6 +50,20 @@ class _TrendingListWidgetState extends State<TrendingListWidget> {
                     style: Theme.of(context).textTheme.titleLarge,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
+                  ),
+                  
+                  Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Expanded(child: Text("World")),
+                        Icon(Icons.access_time,color: Theme.of(context).textTheme.bodyMedium?.color,),
+                        SizedBox(
+                          width: 6,
+                        ),
+                        Text("1h ago")
+                      ],
+                    ),
                   )
                 ],
               ),
