@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:news_three/presentation/model/category_news.dart';
 import 'package:news_three/presentation/widget/home_page/category_list_widget.dart';
+import 'package:news_three/presentation/widget/home_page/latest_list_widget.dart';
+import 'package:news_three/presentation/widget/home_page/seacrh_bar_article_widget.dart';
+import 'package:news_three/presentation/widget/home_page/trending_list_widget.dart';
 import 'package:news_three/presentation/widget/toolbar.dart';
 import 'package:news_three/res/app_theme.dart';
 
@@ -9,14 +12,14 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
-  
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  List<CategoryNews>listCategory = [
+  List<CategoryNews> listCategory = [
     CategoryNews(title: "All", isSelected: true),
     CategoryNews(title: "Business", isSelected: true),
     CategoryNews(title: "Politics", isSelected: true),
@@ -24,8 +27,9 @@ class _MyHomePageState extends State<MyHomePage> {
     CategoryNews(title: "Crypto", isSelected: true),
     CategoryNews(title: "Technology", isSelected: true),
   ];
-  final searchEditController = TextEditingController();
 
+  var scrollControllerHome = ScrollController();
+  final searchEditController = TextEditingController();
 
   void _incrementCounter() {
     setState(() {
@@ -37,136 +41,138 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
-        statusBarColor: Theme.of(context).scaffoldBackgroundColor,
-        statusBarIconBrightness: context.isDarkMode() ? Brightness.light : Brightness.dark
-      ),
+          statusBarColor: Theme.of(context).scaffoldBackgroundColor,
+          statusBarIconBrightness:
+              context.isDarkMode() ? Brightness.light : Brightness.dark),
       child: Scaffold(
-        appBar: NewsThreeToolbar(const Size(double.infinity, 100)),
+        appBar: NewsThreeToolbar(Size(MediaQuery.of(context).size.width, 100)),
         body: Container(
-          padding: const EdgeInsets.fromLTRB(24, 4, 0, 16),
-          child: Column(
-            
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(
-                height: 8,
-              ),
-              Text("Selamat Malam",textAlign: TextAlign.start,),
-
-              SizedBox(height :24),
-
-              Container(
-                margin: EdgeInsets.only(right: 24),
-                padding: EdgeInsets.symmetric(vertical: 4,horizontal: 16),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: Theme.of(context).backgroundColor
-                ),
-                child: Row(
-
-                  children: [
-                    const Icon(
-                      Icons.search,
-                      size: 24,
-                      ),
-                    const SizedBox(width: 8,),
-                    Expanded(
-                      child: TextField(
-                    
-                        controller: searchEditController ,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Search Article"
-                        ),
-                      ),
+          padding: EdgeInsets.fromLTRB(0, 4, 0, 16),
+          child: CustomScrollView(
+            slivers: [
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 24),
+                    child: Text(
+                      "Selamat Malam",
+                      textAlign: TextAlign.start,
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16,),
-              SizedBox(
-                height: 40,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: listCategory.length,
-                  itemBuilder: (context, index)  {
-                    return CategoryListWidget(
-                      categoryNews: listCategory[index],
-                    );
+                  ),
+                  const SizedBox(height: 24),
+                  SearchBarArticleWidget(searchEditController: searchEditController,),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Container(
+                    height: 40,
+                    margin: const EdgeInsets.only(left: 24),
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: listCategory.length,
+                      itemBuilder: (context, index) {
+                        return CategoryListWidget(
+                          categoryNews: listCategory[index],
+                        );
                       },
                     ),
-              ),
-              SizedBox(height: 24,),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      "Trending",
-                      style: TextStyle(color: Theme.of(context).textTheme.headlineSmall?.color,
-                      fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
-                      fontWeight: FontWeight.bold)
-                    ),
                   ),
-                  GestureDetector(
-                    onTap: (){
-                      print("View More Trending");
-                    },
-                    child: Text(
-                      "View more",
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
-                        fontWeight: FontWeight.bold
-                      ),
-                      ),
+                  const SizedBox(
+                    height: 24,
                   ),
-                  SizedBox(width:16,)
-                ],
-
-              ),
-              SizedBox(
-                height: 300,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 5,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      margin: EdgeInsets.fromLTRB(0, 16, 16, 0),
-                      width: MediaQuery.of(context).size.width * 0.75,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 24,
                       ),
-                      child: Container(
-                        margin: EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.75,
-                              height: 150,
-                              decoration: BoxDecoration(
-                                color: Colors.pink,
-                                borderRadius: BorderRadius.circular(16)
-                              ),
-                            ),
-                            SizedBox(height: 8,),
-                            Text(
-                              
-                              "Ukraine conflict: Kyiv braces for a Russian assaultUkraine conflict: Kyiv braces for a Russian assaultUkraine conflict: Kyiv braces for a Russian assaultUkraine conflict: Kyiv braces for a Russian assault",
-                              style: Theme.of(context).textTheme.titleMedium,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              
-                            )
-                          ],
+                      Expanded(
+                        child: Text("Trending",
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.color,
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.fontSize,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          print("View More Trending${MediaQuery.of(context).size.width}}");
+                        },
+                        child: Text(
+                          "View more",
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.fontSize,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
-                      );
-                    },
+                      const SizedBox(
+                        width: 24,
+                      )
+                    ],
                   ),
+                  const TrendingListWidget(),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 24,
+                      ),
+                      Expanded(
+                        child: Text("Latest",
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.color,
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.fontSize,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          print("View More Trending");
+                        },
+                        child: Text(
+                          "View more",
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.fontSize,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 24,
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                ]),
               ),
-
+              SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return const LatestListWidget();
+                }, childCount: 10),
+              )
             ],
           ),
         ),
