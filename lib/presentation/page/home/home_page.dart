@@ -21,16 +21,17 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   List<CategoryNews> listCategory = [
     CategoryNews(title: "All", isSelected: true),
-    CategoryNews(title: "Business", isSelected: true),
-    CategoryNews(title: "Politics", isSelected: true),
-    CategoryNews(title: "Gaming", isSelected: true),
-    CategoryNews(title: "Crypto", isSelected: true),
-    CategoryNews(title: "Technology", isSelected: true),
+    CategoryNews(title: "Business", isSelected: false),
+    CategoryNews(title: "Politics", isSelected: false),
+    CategoryNews(title: "Gaming", isSelected: false),
+    CategoryNews(title: "Crypto", isSelected: false),
+    CategoryNews(title: "Technology", isSelected: false),
   ];
 
   var scrollControllerHome = ScrollController();
   final searchEditController = TextEditingController();
-
+  var indexOld = 0;
+  var newIndex = 0;
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -64,7 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  SearchBarArticleWidget(searchEditController: searchEditController,),
+                  SearchBarArticleWidget(
+                    searchEditController: searchEditController,
+                  ),
                   const SizedBox(
                     height: 16,
                   ),
@@ -75,8 +78,31 @@ class _MyHomePageState extends State<MyHomePage> {
                       scrollDirection: Axis.horizontal,
                       itemCount: listCategory.length,
                       itemBuilder: (context, index) {
-                        return CategoryListWidget(
-                          categoryNews: listCategory[index],
+                        return GestureDetector(
+                          onTap: () {
+                            // index 3
+
+                            //old = 0
+
+                            //new = 3
+
+                            
+                            indexOld = newIndex;
+                            newIndex = index;
+                            if(newIndex != indexOld){
+                              setState(() {
+                              listCategory[index].isSelected = true;
+                              listCategory[indexOld].isSelected = false;   
+                              });
+                          
+                            }else{
+
+                            }
+                            
+                          },
+                          child: CategoryListWidget(
+                            categoryNews: listCategory[index],
+                          ),
                         );
                       },
                     ),
@@ -104,7 +130,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          print("View More Trending${MediaQuery.of(context).size.width}}");
+                          print(
+                              "View More Trending${MediaQuery.of(context).size.width}}");
                         },
                         child: Text(
                           "View more",
@@ -123,7 +150,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                   const TrendingListWidget(),
-                
                   Row(
                     children: [
                       const SizedBox(

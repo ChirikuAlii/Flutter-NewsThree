@@ -45,7 +45,9 @@ class MyThemes {
       colorScheme: const ColorScheme.light(),
       iconTheme: const IconThemeData(color: AppColors.colorPrimary));
 
+
 }
+
 
 extension DarkMode on BuildContext {
   /// is dark mode currently enabled?
@@ -54,3 +56,16 @@ extension DarkMode on BuildContext {
     return brightness == Brightness.dark;
   }
 }
+class CategoryArticleTheme{
+  BuildContext context;
+  CategoryArticleTheme (this.context);
+
+  Color selectedBackground(){
+      return context.isDarkMode() ? Colors.white : AppColors.blackTangaroa;
+  }
+
+  Color selectedText(){
+      return context.isDarkMode() ? AppColors.blackTangaroa : Colors.white;
+  }
+}
+
